@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddEntityFrameworkSqlServer()
     .AddDbContext<SystemDBContext>(
-        options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"))
+        options => options.UseSqlServer(builder.Configuration.GetConnectionString("Database"))
     );
 
 // Config Repositorys
