@@ -21,7 +21,7 @@ namespace APIFormsX_Wing.Repositorys
 
         public async Task<List<User>> GetAll()
         {
-            return await _dbContext.Users.ToListAsync();
+            return await _dbContext.Users.Where(u => u.Active).ToListAsync();
         }
 
         public async Task<User> Create(User user)
@@ -41,7 +41,11 @@ namespace APIFormsX_Wing.Repositorys
                 throw new Exception("Usuário nao encontrado.");
             }
 
-            _dbContext.Users.Remove(userId);
+            userId.Active = !userId.Active;
+
+            //_dbContext.Users.Remove(userId);
+
+            _dbContext.Users.Update(userId);
             await _dbContext.SaveChangesAsync();
 
             return true;

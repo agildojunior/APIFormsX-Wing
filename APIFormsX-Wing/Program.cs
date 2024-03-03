@@ -12,11 +12,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+builder.Services.AddDbContext<SystemDBContext>(
+    options => options.UseNpgsql(builder.Configuration.GetConnectionString("Database"))
+);
+/*
 builder.Services.AddEntityFrameworkSqlServer()
     .AddDbContext<SystemDBContext>(
-        options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"))
+        options => options.UseSqlServer(builder.Configuration.GetConnectionString("Database"))
     );
+*/
 
 // Config Repositorys
 builder.Services.AddScoped<IUserRepository, UserRepository>();
