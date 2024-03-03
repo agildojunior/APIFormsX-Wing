@@ -1,0 +1,6 @@
+@APIFormsX_Wing_HostAddress = http://localhost:5008
+
+GET {{APIFormsX_Wing_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
