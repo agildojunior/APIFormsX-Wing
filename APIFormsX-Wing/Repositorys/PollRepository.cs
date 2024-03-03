@@ -50,5 +50,20 @@ namespace APIFormsX_Wing.Repositorys
 
             return existingPoll;
         }
+
+        public async Task<bool> Delete(int id)
+        {
+            var existingPoll = await _dbContext.Polls.FirstOrDefaultAsync(p => p.Id == id);
+
+            if (existingPoll == null)
+            {
+                throw new Exception("Poll não encontrada.");
+            }
+
+            _dbContext.Polls.Remove(existingPoll);
+            await _dbContext.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

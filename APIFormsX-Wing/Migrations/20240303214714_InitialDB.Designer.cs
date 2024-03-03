@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace APIFormsX_Wing.Migrations
 {
     [DbContext(typeof(SystemDBContext))]
-    [Migration("20240303175628_InitialDB")]
+    [Migration("20240303214714_InitialDB")]
     partial class InitialDB
     {
         /// <inheritdoc />
@@ -47,6 +47,31 @@ namespace APIFormsX_Wing.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Polls");
+                });
+
+            modelBuilder.Entity("APIFormsX_Wing.Models.Question", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("PollId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("QuestionText")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Questions");
                 });
 
             modelBuilder.Entity("APIFormsX_Wing.Models.User", b =>

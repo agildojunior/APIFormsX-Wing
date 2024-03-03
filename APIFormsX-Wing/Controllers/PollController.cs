@@ -44,5 +44,12 @@ namespace APIFormsX_Wing.Controllers
             Poll newPoll = await _pollRepository.Edit(poll, id);
             return Ok(newPoll);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<bool>> Delete(int id)
+        {
+            bool deleted = await _pollRepository.Delete(id);
+            return Ok(deleted);
+        }
     }
 }

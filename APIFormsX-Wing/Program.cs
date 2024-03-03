@@ -25,6 +25,7 @@ builder.Services.AddEntityFrameworkSqlServer()
 // Config Repositorys
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPollRepository, PollRepository>();
+builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 
 var app = builder.Build();
 
