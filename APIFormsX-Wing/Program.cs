@@ -1,7 +1,7 @@
 using APIFormsX_Wing.Data;
 using APIFormsX_Wing.Repositorys;
 using APIFormsX_Wing.Repositorys.interfaces;
-using Microsoft.EntityFrameworkCore;
+//using Microsoft.EntityFrameworkCore;
 //using Npgsql.EntityFrameworkCore.PostgreSQL;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,15 +13,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+/*
 builder.Services.AddEntityFrameworkSqlServer()
     .AddDbContext<SystemDBContext>(
         options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"))
     );
+*/
 
 /*
 builder.Services.AddEntityFrameworkNpgsql()
     .AddDbContext<SystemDBContext>(
-        options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+        options => options.UseNpgsql(builder.Configuration.GetConnectionString("DataBase"))
     );
 */
 
