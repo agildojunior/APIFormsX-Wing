@@ -46,7 +46,7 @@ namespace APIFormsX_Wing.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> Edit(int id)
+        public async Task<ActionResult<User>> Delete(int id)
         {
             bool deleted = await _UserRepository.Delete(id);
             return Ok(deleted);

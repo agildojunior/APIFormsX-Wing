@@ -1,8 +1,7 @@
 using APIFormsX_Wing.Data;
 using APIFormsX_Wing.Repositorys;
 using APIFormsX_Wing.Repositorys.interfaces;
-//using Microsoft.EntityFrameworkCore;
-//using Npgsql.EntityFrameworkCore.PostgreSQL;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,21 +12,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-/*
+
 builder.Services.AddEntityFrameworkSqlServer()
     .AddDbContext<SystemDBContext>(
         options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"))
     );
-*/
 
-/*
-builder.Services.AddEntityFrameworkNpgsql()
-    .AddDbContext<SystemDBContext>(
-        options => options.UseNpgsql(builder.Configuration.GetConnectionString("DataBase"))
-    );
-*/
-
+// Config Repositorys
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPollRepository, PollRepository>();
 
 var app = builder.Build();
 

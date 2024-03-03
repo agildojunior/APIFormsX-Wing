@@ -8,6 +8,7 @@ namespace APIFormsX_Wing.Repositorys
     public class UserRepository : IUserRepository
     {
         private readonly SystemDBContext _dbContext;
+
         public UserRepository(SystemDBContext systemDBContext)
         {
             _dbContext = systemDBContext;
