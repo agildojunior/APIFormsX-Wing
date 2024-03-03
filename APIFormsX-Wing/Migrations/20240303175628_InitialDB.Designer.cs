@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace APIFormsX_Wing.Migrations
 {
     [DbContext(typeof(SystemDBContext))]
-    [Migration("20240303165417_InitialDB")]
+    [Migration("20240303175628_InitialDB")]
     partial class InitialDB
     {
         /// <inheritdoc />
@@ -46,8 +46,6 @@ namespace APIFormsX_Wing.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Polls");
                 });
 
@@ -80,17 +78,6 @@ namespace APIFormsX_Wing.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("APIFormsX_Wing.Models.Poll", b =>
-                {
-                    b.HasOne("APIFormsX_Wing.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

@@ -12,8 +12,5 @@ namespace APIFormsX_Wing.Models
         public int UserId { get; set; }
         public string City { get; set; }
         public DateTime Date { get; set; }
-
-        // User navigation property
-        public User User { get; set; }
     }
 }
