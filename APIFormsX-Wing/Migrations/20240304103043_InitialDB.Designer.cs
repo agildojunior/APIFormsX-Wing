@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace APIFormsX_Wing.Migrations
 {
     [DbContext(typeof(SystemDBContext))]
-    [Migration("20240303214714_InitialDB")]
+    [Migration("20240304103043_InitialDB")]
     partial class InitialDB
     {
         /// <inheritdoc />
@@ -24,6 +24,26 @@ namespace APIFormsX_Wing.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("APIFormsX_Wing.Models.Answeroption", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("OptionText")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Answeroptions");
+                });
 
             modelBuilder.Entity("APIFormsX_Wing.Models.Poll", b =>
                 {

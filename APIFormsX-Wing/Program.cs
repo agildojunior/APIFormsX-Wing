@@ -1,4 +1,5 @@
 using APIFormsX_Wing.Data;
+using APIFormsX_Wing.Models;
 using APIFormsX_Wing.Repositorys;
 using APIFormsX_Wing.Repositorys.interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,7 @@ builder.Services.AddEntityFrameworkSqlServer()
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPollRepository, PollRepository>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
+builder.Services.AddScoped<IAnsweroptionRepository, AnsweroptionRepository>();
 
 var app = builder.Build();
 

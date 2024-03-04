@@ -13,6 +13,20 @@ namespace APIFormsX_Wing.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Answeroptions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    QuestionId = table.Column<int>(type: "integer", nullable: false),
+                    OptionText = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Answeroptions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Polls",
                 columns: table => new
                 {
@@ -62,6 +76,9 @@ namespace APIFormsX_Wing.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Answeroptions");
+
             migrationBuilder.DropTable(
                 name: "Polls");
 
