@@ -15,6 +15,8 @@ namespace APIFormsX_Wing.Data
         public DbSet<Poll> Polls { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answeroption> Answeroptions { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,6 +24,7 @@ namespace APIFormsX_Wing.Data
             modelBuilder.ApplyConfiguration(new PollMap());
             modelBuilder.ApplyConfiguration(new QuestionMap());
             modelBuilder.ApplyConfiguration(new AnsweroptionMap());
+            modelBuilder.ApplyConfiguration(new AnswerMap());
             base.OnModelCreating(modelBuilder);
         }
     }
