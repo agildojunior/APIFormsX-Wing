@@ -10,7 +10,7 @@ namespace APIFormsX_Wing.Data.Map
         {
             builder.HasKey(a => a.Id);
             builder.Property(x => x.QuestionId).IsRequired();
-            builder.Property(a => a.OptionText)
+            builder.Property(a => a.OptionText);
         }
     }
 }

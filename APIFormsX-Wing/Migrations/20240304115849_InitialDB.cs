@@ -27,6 +27,22 @@ namespace APIFormsX_Wing.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Answers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    QuestionId = table.Column<int>(type: "integer", nullable: false),
+                    AnsweroptionId = table.Column<int>(type: "integer", nullable: false),
+                    AnswerText = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Answers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Polls",
                 columns: table => new
                 {
@@ -78,6 +94,9 @@ namespace APIFormsX_Wing.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Answeroptions");
+
+            migrationBuilder.DropTable(
+                name: "Answers");
 
             migrationBuilder.DropTable(
                 name: "Polls");
