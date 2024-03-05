@@ -70,5 +70,17 @@ namespace APIFormsX_Wing.Repositorys
             return userId;
         }
 
+        public async Task<User> GetByUsername(string username)
+        {
+            User user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Username == username);
+
+            if (user == null)
+            {
+                throw new Exception("Usuario não encontrado.");
+            }
+
+            return user;
+        }
+
     }
 }

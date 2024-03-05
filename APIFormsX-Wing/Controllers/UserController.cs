@@ -1,7 +1,11 @@
 ﻿using APIFormsX_Wing.Models;
+using APIFormsX_Wing.Repositorys;
 using APIFormsX_Wing.Repositorys.interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using System.Net;
+using System.Net.Mail;
 
 namespace APIFormsX_Wing.Controllers
 {
@@ -50,6 +54,43 @@ namespace APIFormsX_Wing.Controllers
         {
             bool deleted = await _UserRepository.Delete(id);
             return Ok(deleted);
+        }
+
+        [HttpGet("emailRecovery/{username}")]
+        public async Task<ActionResult<bool>> PasswordRecoveryByEmail(string username)
+        {
+            User userEmail = await _UserRepository.GetByUsername(username);
+
+            //ativar acesso ao login em "https://myaccount.google.com/lesssecureapps"
+            string AppEmail = "seu_email@gmail.com";
+            string AppSenha = "sua_senha";
+            string subject = "Recuperação de Senha";
+            string message = $"Olá {userEmail.Username},\n\n" +
+                             "Você solicitou uma recuperação de senha. Aqui estão suas informações:\n" +
+                             $"Nome de usuário: {userEmail.Username}\n" +
+                             $"Sua senha: {userEmail.Password}\n" +
+                             "Atenciosamente,\n" +
+                             "Equipe X-Wing.";
+
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential(AppEmail, AppSenha),
+                EnableSsl = true,
+            };
+            var mailMessage = new MailMessage
+            {
+                From = new MailAddress(AppEmail),
+                Subject = subject,
+                Body = message,
+                IsBodyHtml = false,
+            };
+
+            mailMessage.To.Add(userEmail.Username);
+
+            await smtpClient.SendMailAsync(mailMessage);
+
+            return Ok(true);
         }
     }
 }
