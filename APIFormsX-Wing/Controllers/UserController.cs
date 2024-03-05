@@ -62,8 +62,8 @@ namespace APIFormsX_Wing.Controllers
             User userEmail = await _UserRepository.GetByUsername(username);
 
             //ativar acesso ao login em "https://myaccount.google.com/lesssecureapps"
-            string AppEmail = "seu_email@gmail.com";
-            string AppSenha = "sua_senha";
+            string AppEmail = "seu_email@gmail.com"; //email que ira enviar a msg
+            string AppSenha = "sua_senha"; //senha do email que ira enviar a msg
             string subject = "Recuperação de Senha";
             string message = $"Olá {userEmail.Username},\n\n" +
                              "Você solicitou uma recuperação de senha. Aqui estão suas informações:\n" +
