@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Mail;
+using APIFormsX_Wing.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIFormsX_Wing.Controllers
 {
@@ -27,6 +30,7 @@ namespace APIFormsX_Wing.Controllers
             return Ok(users);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<List<User>>> GetId(int id)
         {
@@ -91,6 +95,21 @@ namespace APIFormsX_Wing.Controllers
             await smtpClient.SendMailAsync(mailMessage);
 
             return Ok(true);
+        }
+
+        [HttpPost("auth")]
+        public async Task<IActionResult> Auth(string username, string password)
+        {
+            User user = await _UserRepository.GetByUsernameAndPassword(username, password);
+
+            //if (username == "agildo" && password == "junior")
+            if (user != null)
+            {
+                var token = TokenService.GenerateToken(user); // Passa o usuário autenticado para GenerateToken
+                return Ok(token);
+            }
+
+            return BadRequest("Usuário ou senha inválidos.");
         }
     }
 }

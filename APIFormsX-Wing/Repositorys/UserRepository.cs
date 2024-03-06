@@ -82,5 +82,17 @@ namespace APIFormsX_Wing.Repositorys
             return user;
         }
 
+        public async Task<User> GetByUsernameAndPassword(string username, string password)
+        {
+            User user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Username == username && x.Password == password);
+
+            if (user == null)
+            {
+                throw new Exception("Usuario não encontrado.");
+            }
+
+            return user;
+        }
+
     }
 }

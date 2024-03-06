@@ -10,5 +10,6 @@ namespace APIFormsX_Wing.Repositorys.interfaces
         Task<User> Edit(User user, int id);
         Task<bool> Delete(int id);
         Task<User> GetByUsername(string username);
+        Task<User> GetByUsernameAndPassword(string username, string password);
     }
 }
