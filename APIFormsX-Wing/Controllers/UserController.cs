@@ -23,6 +23,7 @@ namespace APIFormsX_Wing.Controllers
             _UserRepository = userRepository;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<User>>> GetAll()
         {
@@ -45,6 +46,7 @@ namespace APIFormsX_Wing.Controllers
             return Ok(newUser);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult<User>> Edit([FromBody] User user, int id)
         {
@@ -53,6 +55,7 @@ namespace APIFormsX_Wing.Controllers
             return Ok(newUser);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult<User>> Delete(int id)
         {

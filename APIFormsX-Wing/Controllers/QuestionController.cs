@@ -1,5 +1,6 @@
 ﻿using APIFormsX_Wing.Models;
 using APIFormsX_Wing.Repositorys.interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +17,7 @@ namespace APIFormsX_Wing.Controllers
             _questionRepository = questionRepository;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<Question>>> GetAll()
         {
@@ -23,6 +25,7 @@ namespace APIFormsX_Wing.Controllers
             return Ok(questions);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<Question>> GetId(int id)
         {
@@ -30,6 +33,7 @@ namespace APIFormsX_Wing.Controllers
             return Ok(question);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Question>> Create([FromBody] Question question)
         {
@@ -37,6 +41,7 @@ namespace APIFormsX_Wing.Controllers
             return Ok(newQuestion);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult<Question>> Edit([FromBody] Question question, int id)
         {
@@ -45,6 +50,7 @@ namespace APIFormsX_Wing.Controllers
             return Ok(editedQuestion);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(int id)
         {

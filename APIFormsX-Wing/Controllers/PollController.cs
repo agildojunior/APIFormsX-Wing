@@ -1,5 +1,6 @@
 ﻿using APIFormsX_Wing.Models;
 using APIFormsX_Wing.Repositorys.interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +17,7 @@ namespace APIFormsX_Wing.Controllers
             _pollRepository = pollRepository;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<Poll>>> GetAll()
         {
@@ -23,6 +25,7 @@ namespace APIFormsX_Wing.Controllers
             return Ok(polls);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<List<Poll>>> GetId(int id)
         {
@@ -30,6 +33,7 @@ namespace APIFormsX_Wing.Controllers
             return Ok(poll);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Poll>> Create([FromBody] Poll poll)
         {
@@ -37,6 +41,7 @@ namespace APIFormsX_Wing.Controllers
             return Ok(newPoll);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult<Poll>> Edit([FromBody] Poll poll, int id)
         {
@@ -45,6 +50,7 @@ namespace APIFormsX_Wing.Controllers
             return Ok(newPoll);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(int id)
         {
