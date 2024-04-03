@@ -7,7 +7,7 @@ namespace APIFormsX_Wing
     {
         public static string GenerateSecret()
         {
-            // Gerar uma chave secreta aleatória com 32 bytes (256 bits)
+            // Gerar uma chave secreta aleatória com 32 bytes (256 bits)  
             byte[] keyBytes = new byte[32];
             using (var rng = RandomNumberGenerator.Create())
             {
